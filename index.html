@@ -3,8 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Bookings</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>MD - HOME</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -23,23 +24,30 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <!-- vue related code: -->
-  <script src="https://unpkg.com/vue@3"></script>
-
+  
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@mbaliDuma" />
-  <meta name="twitter:creator" content="@nickbilton" />
+  <meta name="twitter:creator" content="@vukanig_" />
   <meta property="og:url" content="https://vgdecidio.github.io/index.html" />
   <meta property="og:title" content="Spaces Designed With Passion - Mbali Mgobhozi" />
   <meta property="og:description" content="Your space is your when it motivates you to be who you are and make your impact in the world. With us that is what you will gain, elevating spaces to bring your passion back to life." />
   <meta property="og:image" content="https://media.dev.to/cdn-cgi/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F5bbxk7fi2eb6emrk1wqr.jpg" />
 
+
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <!-- =======================================================
+  * Template Name: Maxim
+  * Template URL: https://bootstrapmade.com/maxim-free-onepage-bootstrap-theme/
+  * Updated: Mar 17 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
 
 <body>
+
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex justify-content-between">
@@ -51,210 +59,730 @@
       </div>
 
       <nav id="navbar" class="navbar">
-        <ul>          
-          <li><a class="nav-link scrollto " href="/index.html">Home</a></li>
-          <li><a class="nav-link scrollto" href="/index.html#services">Services</a></li>
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto" href="/booking.html">Book</a></li>
-          <li><a class="nav-link scrollto " href="/index.html#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="/index.html#about">About</a></li>
-          <li><a class="nav-link scrollto" href="/index.html#team">Team</a></li>
-          <li><a class="nav-link scrollto" href="/index.html#contact">Contact</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
-      <!-- .navbar -->
+      </nav><!-- .navbar -->
 
     </div>
   </header><!-- End Header -->
 
-  <main id="main">
-    <script type="importmap">
-      { "imports": {
-          "vue":        "https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.41/vue.esm-browser.prod.js",
-          "vue-router": "https://cdnjs.cloudflare.com/ajax/libs/vue-router/4.1.5/vue-router.esm-browser.min.js"
-      } }
-    </script>
-    <!-- sing function room section -->
-    <section id="app" class="booking-page">
-      <div class="container">
-        <video autoplay muted loop>
-          <source src="/assets/img/booking/booking.mp4" type="video/mp4">
-        </video>
-        <div class="px-4 py-4  my-4 text-center">
-          <!-- <img class="d-block mx-auto mb-4" src="/assets/img/house-small.jpg" alt="" width="72" height="57"> -->
-          <h1 class="display-5 fw-bold text-body-emphasis">{{bookingHeading}}</h1>
-          <div class="col-lg-6 mx-auto">
-            
-            <p class="lead mb-4">
-              {{ bookingIntro }}
-            </p>
-            <!-- 
-              @todo: 
-              add discount to make them feel they have paid less
-             -->
-          </div>
-        </div>
-        <!-- step one - pick the type of project -->
-        <div class="container">
-          <div v-if="showStep1"> 
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              <div v-for="option in bookingOptions" class="col">
-                <div class="card shadow-sm">
-                  <img class="d-block mx-auto mb-4" :src="option.image" alt="" width="100%" height="300px" />
-                  <div class="card-body">
-                    <h5>{{option.title}}</h5>
-                    <p class="card-text">
-                      {{ option.bodyText }}  
-                    </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group">
-                        <button type="button" :class="`btn ${getStyle(option)}`"
-                          @click="selectOption(option)"> 
-                          Add
-                          <small>
-                            {{option.count}}
-                          </small>
-                        </button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary"
-                          v-show="option.count > 0"
-                          @click="removeOption(option)">
-                          remove
-                        </button>
-                      </div>
-                      <small class="text-body-secondary">
-                        {{ option.price }}
-                      </small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div v-if="showStep2">
-            <div class=" col-10 col-lg-8">
-              <h4 class="mb-3">Property address</h4>
-              <form class="needs-validation my-4 mx-auto" novalidate="">
-                <div class="row g-3">
-                  <div class="col-12">
-                    <label for="address" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="address" v-model="form.propertyAddress.address1" placeholder="1234 Main St" required="">
-                    <div class="invalid-feedback">
-                      Please enter your shipping address.
-                    </div>
-                  </div>
-      
-                  <div class="col-12">
-                    <label for="address2" class="form-label">Address 2 <span class="text-body-secondary">(Optional)</span></label>
-                    <input type="text" class="form-control" id="address2" v-model="form.propertyAddress.address2" placeholder="Apartment or suite">
-                  </div>
-      
-                  <div class="col-md-5">
-                    <label for="country" class="form-label">City</label>
-                    <select class="form-select" id="country" required="">
-                      <option v-for="city in cityOptions" v-model="form.propertyAddress.city">{{ city }}</option>
-                    </select>
-                    <div class="invalid-feedback">
-                      Please select a valid country.
-                    </div>
-                  </div>     
-                  <div class="col-md-3">
-                    <label for="zip" class="form-label">Zip</label>
-                    <input type="text" class="form-control" id="zip" v-model="form.propertyAddress.zip" placeholder="" required="">
-                    <div class="invalid-feedback">
-                      Zip code required.
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div v-if="showStep3" class="my-4">
-            <div class="col-md-7 col-lg-8">
-              <h4 class="mb-3">Personal Information</h4>
-              <form class="needs-validation" novalidate="" id="form">
-                <div class="row g-3">
-                  <div class="col-sm-6">
-                    <label for="firstName" class="form-label">First name</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="" v-model="form.clientData.firstName" value="" required="">
-                    <div class="invalid-feedback">
-                      Valid first name is required.
-                    </div>
-                  </div>
-      
-                  <div class="col-sm-6">
-                    <label for="lastName" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="" v-model="form.clientData.lastName" value="" required="">
-                    <div class="invalid-feedback">
-                      Valid last name is required.
-                    </div>
-                  </div>
-      
-                  <div class="col-12">
-                    <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
-                    <input type="email" class="form-control" id="email" v-model="form.clientData.email" placeholder="you@example.com">
-                    <div class="invalid-feedback">
-                      Please enter a valid email address for shipping updates.
-                    </div>
-                  </div>
-      
-                  <div class="col-12">
-                    <label for="address" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="address" v-model="form.clientData.address1" placeholder="1234 Main St" required="">
-                    <div class="invalid-feedback">
-                      Please enter your shipping address.
-                    </div>
-                  </div>
-      
-                  <div class="col-12">
-                    <label for="address2" class="form-label">Address 2 <span class="text-body-secondary">(Optional)</span></label>
-                    <input type="text" class="form-control" id="address2" v-model="form.clientData.address2" placeholder="Apartment or suite">
-                  </div>
-      
-                  <div class="col-md-5">
-                    <label for="country" class="form-label">Country</label>
-                    <select class="form-select" id="country" required="" v-model="form.clientData.clientCity">
-                      <option value="">Choose...</option>
-                      <option v-for="(city, index) in cityOptions">{{city}}</option>
-                    </select>
-                    <div class="invalid-feedback">
-                      Please select a valid country.
-                    </div>
-                  </div>
-                </div>
-                <hr class="my-4">
-                <button class="w-100 btn btn-primary btn-lg" @click="submitForm" type="button">Submit Details</button>
-              </form>
-            </div>
-          </div>
-          <div v-if="showLastStep">
-            <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5">
-              <button type="button" class="position-absolute top-0 end-0 p-3 m-3 btn-close bg-secondary bg-opacity-10 rounded-pill" aria-label="Close"></button>
-              <h1 class="text-body-emphasis">Success</h1>
-              <p class="col-lg-6 mx-auto mb-4">
-                This is amazing work, thank you for booking a session with us, we promise to take good care of your dreams and your joy. 
-                <br />
-                We will be in touch.
-              </p>
-              <a href="https://api.whatsapp.com/send?text=This is WhatsApp sharing example using link" data-action="share/whatsapp/share"  
-                  target="_blank"> 
-                  <button type="button" class="btn btn-success">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
-                      <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"></path>
-                    </svg> share on whatsapp
-                  </button>
-                </a>
-              </div>
-          </div>
-          <button v-if="!showStep1" type="button" class="btn btn-primary my-4 mr-4" @click="previousStep">
-            Previous Step 
-          </button>
-          <button v-if="showNextButton" :disabled="form.selectedOptions.length < 1" type="button" class="btn btn-primary mx-4 my-4" @click="nextStep()">
-            Next Step 
-          </button>  
-        </div>
-      </div>
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="container text-center text-md-left" data-aos="fade-up">
+      <h1>Transforming Spaces, Inspiring Lives</h1>
+      <h2>Work With Us To Live In Creative Excellence.</h2>
+      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+    </div>
+  </section>
+  <!-- End Hero -->
 
+  <main id="main">
+    <!-- ======= Steps Section ======= -->
+    <section id="steps" class="steps section-bg">
+      <div class="section-title" data-aos="fade-up">
+        <h2>
+          Client Process
+        </h2>
+        <p>
+          We like to treat our relationships with tender love and exact results. 
+          We share the journey that we take in gromming our relationship from inspiration, to a finished product.
+        </p>
+      </div>
+      <div class="container px-4">
+        <div class="row no-gutters">
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in">
+            <span>01</span>
+            <h4>Meet & Greet</h4>
+            <p>
+              We will meet so you can share your great idea of how you intend to uplift it.
+            </p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="100">
+            <span>02</span>
+            <h4>Site Visitation</h4>
+            <p>
+              We meet again & I get a chance to view the space to see the concept you have in mind more intimately within the space.
+            </p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="200">
+            <span>03</span>
+            <h4> Inspiration Gathering</h4>
+            <p>
+              I will create the mood boards & potential designs for the space & potential furniture.
+            </p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="300">
+            <span>04</span>
+            <h4>Project Planning</h4>
+            <p>
+              When I get aproal for the mood and the initial concept and designs I will create the rest, and from there its an iteration of feed back &
+              edits until the project is complete.
+            </p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="400">
+            <span>05</span>
+            <h4>furniture Selections</h4>
+            <p>When the designs are complete then we will have to do final touches with the funiture selections and purchases.
+            </p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-in" data-aos-delay="500">
+            <span>06</span>
+            <h4>installations</h4>
+            <p>
+              This is just sourcing of the funiture & purchasing then installing it in your newly refined place. 
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Steps Section -->
+    </section><!-- End Portfolio Section -->
+
+      <!-- ======= Hero Section ======= -->
+  <!-- <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="container text-center text-md-left" data-aos="fade-up">
+      <h1>Transforming Spaces, Inspiring Lives</h1>
+      <h2>Work With Us To Live In Creative Excellence.</h2>
+      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+    </div>
+  </section> -->
+  <!-- End Hero -->
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>Services</h2>
+          <p>
+            
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up">
+            <div class="icon-box icon-box-pink">
+              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+              <h4 class="title"><a href="">Design Consultation and Space Planning</a></h4>
+              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-box icon-box-cyan">
+              <div class="icon"><i class="bx bx-file"></i></div>
+              <h4 class="title"><a href="">Project Management and Construction Documentation</a></h4>
+              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-box icon-box-green">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h4 class="title"><a href="">Furniture Selection, Styling, </a></h4>
+              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-box icon-box-blue">
+              <div class="icon"><i class="bx bx-world"></i></div>
+              <h4 class="title"><a href="">Installation & Review</a></h4>
+              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
     </section>
+    <!-- End Services Section -->
+    <!-- ======= Pricing Section ======= -->
+    <section id="services" class="pricing">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Pricing</h2>
+          <p>
+            Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. quidem hic quas.
+          </p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="box">
+              <h3>Basic</h3>
+              <h4><sup>R</sup>10 000<span> / month</span></h4>
+              <ul>
+                <li>Aida dere</li>
+                <li>Nec feugiat nisl</li>
+                <li>Nulla at volutpat dola</li>
+                <li class="na">Pharetra massa</li>
+                <li class="na">Massa ultricies mi</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#" class="btn-buy">Buy Now</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
+            <div class="box recommended">
+              <h3>Standard</h3>
+              <h4><sup>R</sup>20 000<span> / month</span></h4>
+              <ul>
+                <li>Aida dere</li>
+                <li>Nec feugiat nisl</li>
+                <li>Nulla at volutpat dola</li>
+                <li>Pharetra massa</li>
+                <li class="na">Massa ultricies mi</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#" class="btn-buy">Buy Now</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+            <div class="box">
+              <h3>Premium</h3>
+              <h4><sup>$</sup>29 000<span> / month</span></h4>
+              <ul>
+                <li>Aida dere</li>
+                <li>Nec feugiat nisl</li>
+                <li>Nulla at volutpat dola</li>
+                <li>Pharetra massa</li>
+                <li>Massa ultricies mi</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#" class="btn-buy">Buy Now</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Pricing Section -->
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio section-bg">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Portfolio</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">Comercial</li>
+              <li data-filter=".filter-card">Resedential</li>
+              <li data-filter=".filter-web">Hospitality</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 1</h4>
+                <p>App</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Web 3</h4>
+                <p>Web</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 2</h4>
+                <p>App</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Card 2</h4>
+                <p>Card</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Web 2</h4>
+                <p>Web</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>App 3</h4>
+                <p>App</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Card 1</h4>
+                <p>Card</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Card 3</h4>
+                <p>Card</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Web 3</h4>
+                <p>Web</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Testimonials</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                <h3>Saul Goodman</h3>
+                <h4>Ceo &amp; Founder</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                <h3>Sara Wilsson</h3>
+                <h4>Designer</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                <h3>Jena Karlis</h3>
+                <h4>Store Owner</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                <h3>Matt Brandon</h3>
+                <h4>Freelancer</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                <h3>John Larson</h3>
+                <h4>Entrepreneur</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-xl-6 col-lg-7" data-aos="fade-right">
+            <img src="assets/img/about-mbali.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-xl-6 col-lg-5 pt-5 pt-lg-0">
+            <h3 data-aos="fade-up">Welcome to mbali Design, </h3>
+            <p data-aos="fade-up">
+              where design meets inspiration and creativity knows no bounds. 
+              As a leading South African interior designers, our mission is to ignite your passion 
+              and foster your growth through innovative design solutions that speak to your unique vision and style.
+            </p>
+            <div class="icon-box" data-aos="fade-up">
+              <i class="bx bx-receipt"></i>
+              <h4>Passionate Professionals</h4>
+              <p>
+                Our team is comprised of passionate designers who are dedicated to exceeding your expectations and bringing your vision to life.
+              </p>
+            </div>
+
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-cube-alt"></i>
+              <h4>Tailored Solutions</h4>
+              <p>
+                We understand that every client is unique, which is why we offer personalized design solutions tailored to your individual needs and preferences.
+              </p>
+            </div>
+
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+              <i class="bx bx-cube-alt"></i>
+              <h4>Client-Centric Approach</h4>
+              <p>
+                Your satisfaction is our top priority, and we'll go above and beyond to ensure that you're thrilled with the final result.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>My Partners</h2>
+          <p>
+            This is the team i work and grow with, they represent the talent i am in tune with.</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="member">
+              <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Walter White</h4>
+                  <span>Chief Executive Officer</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="member">
+              <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Sarah Jhonson</h4>
+                  <span>Product Manager</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="member">
+              <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>William Anderson</h4>
+                  <span>CTO</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Amanda Jepson</h4>
+                  <span>Accountant</span>
+                </div>
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+
+    <!-- ======= F.A.Q Section ======= -->
+    <section id="faq" class="faq section-bg">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>F.A.Q</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="faq-list">
+          <ul>
+            <li data-aos="fade-up">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Non consectetur a erat nam at lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                <p>
+                  Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Feugiat scelerisque varius morbi enim nunc? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="200">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Dolor sit amet consectetur adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="300">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="400">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
+                </p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </section><!-- End F.A.Q Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Contact</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row no-gutters justify-content-center" data-aos="fade-up">
+
+          <div class="col-lg-5 d-flex align-items-stretch">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>A108 Adam Street, New York, NY 535022</p>
+              </div>
+
+              <div class="email mt-4">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>info@example.com</p>
+              </div>
+
+              <div class="phone mt-4">
+                <i class="bi bi-phone"></i>
+                <h4>Call:</h4>
+                <p>+1 5589 55488 55s</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-5 d-flex align-items-stretch">
+            <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+          </div>
+
+        </div>
+
+        <div class="row mt-5 justify-content-center" data-aos="fade-up">
+          <div class="col-lg-10">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
   </main>
   <!-- End #main -->
 
@@ -330,16 +858,9 @@
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
-  </footer>
-  <!-- End Footer -->
+  </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.23.1/bootstrap-vue.min.js" 
-    integrity="sha512-SP/zE7YazvnUG95bWnA1AeC5+WtAOqumEHSgcKTNfVefAMsDcVCt6D3Q3goqR3vSf50zPG3OZtnMjBJd9GBgkw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
@@ -348,261 +869,11 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/typed.js/typed.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <script type="text/javascript">
-    (function(){
-       emailjs.init({
-         publicKey: "92j-BVch9Jw5Di66l",
-       });
-    })();
- </script>
-
-  <script type="module">
-    import { createApp } from 'vue';
-
-    const app = Vue.createApp({
-     data() {
-      return {
-        form: {
-          selectedOptions: [],
-          propertyAddress: {},
-          clientData: {
-            firstName: "",
-            lastName: "",
-            email: "",
-            address1: "",
-            clientCity: "",
-            address2: ""
-          }
-        },
-        currentStep: "selectOptions",
-        previousStep: "",
-        bookingHeading: "Happy Booking",
-        bookingIntro: "Here we have the options of designs we can work on together.",
-        bookingOptions: [
-          {
-            title: "bed room",
-            price: "R5 000",
-            optionId: 0,
-            bodyText: "this is the info about this item.",
-            image: "/assets/img/booking/bedroom.jpg",
-            selected: false,
-            count: 0
-          },
-          {
-            title: "living room",
-            price: "R3 000",
-            optionId: 2,
-            bodyText: "this is the info about this item.",
-            image: "/assets/img/booking/living-room.jpg",
-            selected: false,
-            count: 0
-          },
-          {
-            title: "living/dining room",
-            price: "R7 000",
-            optionId: 3,
-            bodyText: "this is the info about this item.",
-            image: "/assets/img/booking/living-or-bedroom.jpg",
-            selected: false,
-            count: 0
-          },
-          {
-            title: "kitchen + dining room",
-            price: "R7 000",
-            optionId: 4,
-            bodyText: "this is the info about this item.",
-            image: "/assets/img/booking/living-or-bedroom.jpg",
-            selected: false,
-            count: 0
-          },
-          {
-            title: "living + dining + kitchen room",
-            price: "R17 000",
-            optionId: 5,
-            bodyText: "this is the info about this item.",
-            image: "/assets/img/booking/kitchen.jpg",
-            selected: false,
-            count: 0
-          },
-          {
-            title: "bathroom",
-            price: "R7 000",
-            optionId: 6,
-            bodyText: "this is the info about this item.",
-            image: "/assets/img/booking/bathroom.jpg",
-            selected: false,
-            count: 0
-          },
-          {
-            title: "hallway + bathroom or bed room",
-            price: "R17 000",
-            optionId: 7,
-            bodyText: "this is the info about this item.",
-            image: "/assets/img/booking/hallway-room.jpg",
-            selected: false,
-            count: 0
-          },
-          {
-            title: "home office",
-            price: "R12 000",
-            optionId: 8,
-            bodyText: "this is the info about this item.",
-            image: "/assets/img/booking/home-office.jpg",
-            selected: false,
-            count: 0
-          },
-          {
-            title: "kids room",
-            price: "R7 000",
-            optionId: 8,
-            bodyText: "this is the info about this item.",
-            image: "/assets/img/booking/kids-room.jpg",
-            selected: false,
-            count: 0
-          },
-        ],
-        cityOptions: [
-          "Durban",
-          "Johannesburg",
-          "Richards Bay",
-          "Cape Town",
-          "Pretoria"
-        ],
-        multiPurpose: [
-          {
-            title: "bedroom + dressing area",
-            price: "R7 000",
-            optionId: 0,
-            bodyText: "this is the info about this item.",
-            image: "/assets/img/house-small.jpg",
-            selected: false,
-            count: 0
-          },
-          {
-            title: "bedroom + home office",
-            price: "R13 000",
-            optionId: 1,
-            bodyText: "this is the info about this item.",
-            image: "/assets/img/house-small.jpg",
-            selected: false,
-            count: 0
-          },
-          {
-            title: "living + play room",
-            price: "R13 000",
-            optionId: 2,
-            bodyText: "this is the info about this item.",
-            image: "/assets/img/house-small.jpg",
-            selected: false,
-            count: 0
-          },
-
-        ]
-      }
-     },
-     components: {
-      },
-     computed: {
-      showStep1() {
-        return this.currentStep == 'selectOptions';
-      },
-      showLastStep() {
-        return this.currentStep == 'showResult';
-      },
-      showStep2() {
-        // will have intermediery step with copy write
-        return this.currentStep == 'selectLocation'; // not 2nd step
-      },
-      showStep3() {
-        return this.currentStep == "personalInfo"
-      },
-      showNextButton() {
-        return this.currentStep != "personalInfo"
-      },
-     },
-     methods: {
-      getStyle(option) {
-        if(this.form.selectedOptions.includes(option.title) && option.count > 0){
-          return 'btn-warning';
-        }
-        return 'btn-secondary';
-      },
-      selectOption(option) {
-        let index = this.bookingOptions.indexOf(option)
-        option.selected = true;
-        option.count++;
-        this.bookingOptions[index] = option;
-
-        /* check if the option id is inside the array of selected */
-        let extists = this.form.selectedOptions.indexOf(option.title) > -1 ? true: false;
-
-        if(!extists) {
-          this.form.selectedOptions.push(option.title);
-        }
-      },
-      removeOption(option){
-        --option.count;
-        let index = this.form.selectedOptions.indexOf(option.title);
-        if(index >= 0) {
-          this.form.selectedOptions.splice(index,1)
-        }
-      },
-      previousStep() {
-        if(this.currentStep == "selectOptions"){
-          this.currentStep = "selectLocation"
-          return
-        }
-        if(this.currentStep == "selectLocation"){
-          this.currentStep = "roomSpace"
-          return
-        }
-        if(this.currentStep == "roomSpace"){
-          this.currentStep = "personalInfo"
-          return
-        }
-      },
-      nextStep() {
-        this.previousStep = this.currentStep;
-        if(this.currentStep === "selectOptions"){
-          this.bookingHeading = "Location Address ";
-          this.bookingHeading = "Please enter the location for the place you want us to work on together";
-          this.currentStep = "selectLocation"
-          return;
-        }
-        if(this.currentStep === "selectLocation"){
-          this.bookingHeading = "Personal Info ";
-          this.bookingHeading = "Please enter your contact details and info";
-          this.currentStep = "personalInfo"
-          return;
-        }
-      },
-      submitForm(e) {
-        e.preventDefault();
-        this.form.selectedOptions = this.form.selectedOptions.join(", ");
-        let form = document.querySelector('#form');
-        console.log("form: ", form)
-        emailjs.init("92j-BVch9Jw5Di66l");
-        emailjs.send('service_nbj476q', 'template_bgzc3ow', {userData: {
-          name: this.form.clientData.firstName,
-          email: this.form.clientData.email,
-          city: this.form.clientData.clientCity,
-          firstAddress: this.form.propertyAddress.address1,
-          secondAddress: this.form.propertyAddress.address2,
-          selectedOptions: this.form.selectedOptions
-        }}).then(function() {
-            this.currentStep = "showResult"
-          }, function(error) {
-            console.log('FAILED...', error);
-          });
-        }
-      }
-    }).mount('#app')
-  
-  </script>
 </body>
 
 </html>
