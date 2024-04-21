@@ -9,7 +9,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="favicon-16x16.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -25,6 +25,14 @@
 
   <!-- vue related code: -->
   <script src="https://unpkg.com/vue@3"></script>
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@mbaliDuma" />
+  <meta name="twitter:creator" content="@nickbilton" />
+  <meta property="og:url" content="https://vgdecidio.github.io/index.html" />
+  <meta property="og:title" content="Spaces Designed With Passion - Mbali Mgobhozi" />
+  <meta property="og:description" content="Your space is your when it motivates you to be who you are and make your impact in the world. With us that is what you will gain, elevating spaces to bring your passion back to life." />
+  <meta property="og:image" content="https://media.dev.to/cdn-cgi/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fupl29xtzbmm69uuqqd04.png" />
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -66,7 +74,6 @@
           "vue-router": "https://cdnjs.cloudflare.com/ajax/libs/vue-router/4.1.5/vue-router.esm-browser.min.js"
       } }
     </script>
-    <!-- sing function room section -->
     <section id="app" class="booking-page">
       <div class="container">
         <video autoplay muted loop>
@@ -339,7 +346,6 @@
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
@@ -576,7 +582,6 @@
         e.preventDefault();
         this.form.selectedOptions = this.form.selectedOptions.join(", ");
         let form = document.querySelector('#form');
-        console.log("form: ", form)
         emailjs.init("92j-BVch9Jw5Di66l");
         emailjs.send('service_nbj476q', 'template_bgzc3ow', {userData: {
           name: this.form.clientData.firstName,
