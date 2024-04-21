@@ -31,23 +31,25 @@
   <meta property="og:url" content="https://vgdecidio.github.io/index.html" />
   <meta property="og:title" content="Spaces Designed With Passion - Mbali Mgobhozi" />
   <meta property="og:description" content="Your space is your when it motivates you to be who you are and make your impact in the world. With us that is what you will gain, elevating spaces to bring your passion back to life." />
-  <meta property="og:image" content="https://media.dev.to/cdn-cgi/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F5bbxk7fi2eb6emrk1wqr.jpg" />
-
+  <meta property="og:image" content="https://media.dev.to/cdn-cgi/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fupl29xtzbmm69uuqqd04.png" />
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Maxim
-  * Template URL: https://bootstrapmade.com/maxim-free-onepage-bootstrap-theme/
-  * Updated: Mar 17 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- email service -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 </head>
 
 <body>
-
+  <script type="importmap">
+    { "imports": {
+        "vue":        "https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.41/vue.esm-browser.prod.js",
+        "vue-router": "https://cdnjs.cloudflare.com/ajax/libs/vue-router/4.1.5/vue-router.esm-browser.min.js"
+    } }
+  </script>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex justify-content-between">
@@ -62,7 +64,7 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="/booking.html">Book</a></li>
+          <li><a class="nav-link scrollto" href="/booking.html">Booking</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
@@ -84,7 +86,7 @@
   </section>
   <!-- End Hero -->
 
-  <main id="main">
+  <main id="app">
     <!-- ======= Steps Section ======= -->
     <section id="steps" class="steps section-bg">
       <div class="section-title" data-aos="fade-up">
@@ -94,7 +96,6 @@
         <p>
           We like to treat our relationships with tender love and exact results. 
           We share the journey that we take in gromming our relationship from inspiration, to a finished product.
-        </p>
       </div>
       <div class="container px-4">
         <div class="row no-gutters">
@@ -150,18 +151,9 @@
         </div>
 
       </div>
-    </section><!-- End Steps Section -->
-    </section><!-- End Portfolio Section -->
+    </section>
+    <!-- End Steps Section -->
 
-      <!-- ======= Hero Section ======= -->
-  <!-- <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
-    <div class="container text-center text-md-left" data-aos="fade-up">
-      <h1>Transforming Spaces, Inspiring Lives</h1>
-      <h2>Work With Us To Live In Creative Excellence.</h2>
-      <a href="#about" class="btn-get-started scrollto">Get Started</a>
-    </div>
-  </section> -->
-  <!-- End Hero -->
     <!-- ======= Services Section ======= -->
     <section id="services" class="services section-bg">
       <div class="container">
@@ -235,7 +227,7 @@
                 <li class="na">Massa ultricies mi</li>
               </ul>
               <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
+                <a href="/booking.html" class="btn-buy">Book Now</a>
               </div>
             </div>
           </div>
@@ -252,7 +244,7 @@
                 <li class="na">Massa ultricies mi</li>
               </ul>
               <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
+                <a href="/booking.html" class="btn-buy">Book Now</a>
               </div>
             </div>
           </div>
@@ -269,7 +261,7 @@
                 <li>Massa ultricies mi</li>
               </ul>
               <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
+                <a href="/booking.html" class="btn-buy">Book Now</a>
               </div>
             </div>
           </div>
@@ -277,7 +269,8 @@
         </div>
 
       </div>
-    </section><!-- End Pricing Section -->
+    </section>
+    <!-- End Pricing Section -->
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio section-bg">
@@ -710,7 +703,8 @@
 
       </div>
     </section><!-- End F.A.Q Section -->
-
+ 
+    formname {{form.email}}
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
@@ -721,7 +715,6 @@
         </div>
 
         <div class="row no-gutters justify-content-center" data-aos="fade-up">
-
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="info">
               <div class="address">
@@ -745,46 +738,43 @@
             </div>
 
           </div>
-
           <div class="col-lg-5 d-flex align-items-stretch">
             <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
           </div>
 
         </div>
-
         <div class="row mt-5 justify-content-center" data-aos="fade-up">
           <div class="col-lg-10">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form id="form">
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <input type="text" name="name" class="form-control" id="name" v-model="form.fullName" placeholder="Your Name" required>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control" name="email" id="email" v-model="form.email" placeholder="Your Email" required>
                 </div>
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                <input type="text" class="form-control" name="subject" id="subject" v-model="form.subject" placeholder="Subject" required>
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" v-model="form.message" required></textarea>
               </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+              <div class="text-center">
+                <button class="btn btn-primary my-4" type="button" @click="submitForm(event)">
+                  Send Message
+                </button>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
           </div>
 
         </div>
 
       </div>
-    </section><!-- End Contact Section -->
-
+    </section>
+    <!-- End Contact Section -->
   </main>
-  <!-- End #main -->
+  <!-- End #app -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -860,20 +850,58 @@
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>  
+  <script type="text/javascript">
+    (function(){
+       emailjs.init({
+         publicKey: "92j-BVch9Jw5Di66l",
+       });
+    })();
+ </script>
+
+  <script type="module">
+    import { createApp } from 'vue';
+
+    Vue.createApp({
+     data() {
+      return {
+        form: {
+          fullName: "",
+          email: "",
+          message: ""
+        },        
+      }
+     },
+     methods: {
+      submitForm() {
+        console.log("testing form: ", this.form)
+        let form = document.querySelector('#form');
+        emailjs.init("92j-BVch9Jw5Di66l");
+        emailjs.send('service_nbj476q', 'template_q0x61bh', {
+            to_name: "Mbali M",
+            from_name: this.form.fullName,
+            email: this.form.email,
+            message: this.form.message
+        }).then(function() {
+            this.currentStep = "showResult"
+          }, function(error) {
+            console.log('FAILED...', error);
+          });
+        }
+      }
+    }).mount('#app')
+  
+  </script>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-
+  
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
 </body>
 
 </html>
