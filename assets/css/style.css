@@ -801,7 +801,7 @@ video {
 # Services
 --------------------------------------------------------------*/
 .services  {
-  height: calc(86vh - 174px);
+  height: fit-content;
   background: url("../img/hero-services.jpg") center center;
   background-size: cover;
 }
